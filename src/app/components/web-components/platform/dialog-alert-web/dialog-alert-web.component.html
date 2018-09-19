@@ -1,0 +1,9 @@
+<kendo-dialog [title]="title" (close)="onCloseDialog()" [minWidth]="250" [width]="450">
+  <p style="margin: 30px; text-align: center;" [innerHTML]="model?.message"></p>
+  <kendo-dialog-actions>
+    <div style="flex-grow: 1"></div>
+    <button style="width:50%;" color="warn" mat-raised-button (click)="onCloseDialog()" matTooltip="click to close the dialog">
+      <mat-icon>check_circle_outline</mat-icon>
+      OK</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

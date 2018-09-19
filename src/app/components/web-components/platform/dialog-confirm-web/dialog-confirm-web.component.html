@@ -1,0 +1,11 @@
+<kendo-dialog [title]="title" (close)="onCloseDialog()" [minWidth]="250" [width]="450">
+  <p style="margin: 30px; text-align: center;" [innerHTML]="model?.message"></p>
+  <kendo-dialog-actions>
+    <button style="width:50%;" mat-raised-button (click)="onCloseDialog()" matTooltip="click to cancel the process">
+      <mat-icon>highlight_off</mat-icon>
+      {{model?.captionNo}}</button>
+    <button style="width:50%;" color="warn" mat-raised-button (click)="onClickConfirm()" matTooltip="click to confirm the process">
+      <mat-icon>error_outline</mat-icon>
+      {{model?.captionYes}}</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

@@ -1,0 +1,98 @@
+<kendo-dialog [title]="title" (close)="onCloseDialog()" [minWidth]="250" [width]="600">
+
+  <form class="ngmaterial-form" [formGroup]="formGroupEntity">
+
+    <mat-grid-list cols="2" rowHeight="4:1">
+      <mat-grid-tile>
+        <mat-form-field class="ngmaterial-full-width">
+          <input matInput placeholder="task" formControlName="task">
+          <mat-error *ngIf="formGroupEntity.controls.task.touched && formGroupEntity.controls.task.dirty && formGroupEntity.controls.task.hasError('required')">
+            Enter "task" field.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="ngmaterial-full-width">
+          <mat-select placeholder="status" formControlName="statusId">
+            <mat-option *ngFor="let toDoStatusType of toDoStatusTypes" [value]="toDoStatusType.id">
+              {{ toDoStatusType.title }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroupEntity.controls.statusId.touched && formGroupEntity.controls.statusId.dirty && formGroupEntity.controls.statusId.hasError('required')">
+            Select "status" field.
+          </mat-error>
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="ngmaterial-full-width">
+          <mat-select placeholder="priority" formControlName="priority">
+            <mat-option value="Low">
+              Low
+            </mat-option>
+            <mat-option value="Medium">
+              Medium
+            </mat-option>
+            <mat-option value="High">
+              High
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroupEntity.controls.priority.touched && formGroupEntity.controls.priority.dirty && formGroupEntity.controls.priority.hasError('required')">
+            Select "priority" field.
+          </mat-error>
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="choose due date" formControlName="dueDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formGroupEntity.controls.dueDate.touched && formGroupEntity.controls.dueDate.dirty && formGroupEntity.controls.dueDate.hasError('required')">
+            Select "dueDate" field.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="ngmaterial-full-width">
+          <mat-select placeholder="assignee" formControlName="assigneeId">
+            <mat-option *ngFor="let assignee of assignees" [value]="assignee.id">
+              {{ assignee.title }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroupEntity.controls.assigneeId.touched && formGroupEntity.controls.assigneeId.dirty && formGroupEntity.controls.assigneeId.hasError('required')">
+            Select "assignee" field.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="2">
+        <mat-form-field class="ngmaterial-full-width">
+          <textarea matInput placeholder="notes" style="height:50px" formControlName="notes"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+    </mat-grid-list>
+
+  </form>
+
+
+
+  <kendo-dialog-actions>
+    <br>
+    <div *ngIf="webComponentMode=='view'" style="flex-grow: 1"></div>
+    <button style="width:50%;" color="primary" *ngIf="webComponentMode!='view'" [disabled]="!formGroupEntity.valid"
+      mat-button (click)="onSaveEntity()" matTooltip="To save the changes, click the button">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+    <button style="width:50%;" mat-raised-button (click)="onCloseDialog()" matTooltip="click to close the dialog">
+      <mat-icon>cancel</mat-icon>
+      Close
+    </button>
+  </kendo-dialog-actions>
+</kendo-dialog>

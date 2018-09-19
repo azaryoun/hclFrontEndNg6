@@ -1,0 +1,102 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+
+
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" matTooltip="hide side menu">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        {{projectName}}
+      </mat-toolbar-row>
+
+
+
+    </mat-toolbar>
+
+    <div style="overflow: auto;height: calc(100vh - 70px)">
+      <mat-accordion>
+
+      
+
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>business</mat-icon>&nbsp; Administration
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-nav-list>
+            <a mat-list-item routerLinkActive="active" routerLink="toDo">
+              <mat-icon>person</mat-icon>&nbsp;To Do List
+            </a>
+            <a mat-list-item>
+              <mat-icon>people</mat-icon>&nbsp;Groups
+            </a>
+            <a mat-list-item>
+              <mat-icon>account_circle</mat-icon>&nbsp;Account
+            </a>
+            <a mat-list-item>
+              <mat-icon>calendar_today</mat-icon>&nbsp;Logs
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+     
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>help_outline</mat-icon>&nbsp; Help
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+
+          <mat-nav-list>
+            <a mat-list-item>Link 1</a>
+            <a mat-list-item>Link 2</a>
+            <a mat-list-item>Link 3</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+    </div>
+
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="shadow-box-dark" style="z-index: 100!important">
+
+
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="!drawer.opened"
+        matTooltip="show side menu">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+
+      <div style="flex-grow: 1"></div>
+      <button mat-button [matMenuTriggerFor]="menuProfile" [matTooltip]="userProfile?.mobileNo">
+        <mat-icon>
+          account_circle
+        </mat-icon>&nbsp; {{userProfile?.firstName + ' ' + userProfile?.lastName}}
+      </button>
+
+      <mat-menu #menuProfile="matMenu">
+       
+
+        <button mat-menu-item (click)="onClickSignOut()">
+          <mat-icon>power_settings_new</mat-icon>
+          <span>Sign out</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<app-loading-spinner-web [isLoading]="isLoading"></app-loading-spinner-web>
