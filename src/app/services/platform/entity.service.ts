@@ -10,9 +10,9 @@ export class EntityService<TModel, TModelManagement> {
 
     constructor(
         protected _httpClient: HttpClient,
-        protected _serverControllerName: string,
+        public serverControllerName: string,
     ) {
-        this._serverControllerName = AppSettings.SERVER_IP + this._serverControllerName;
+        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
     }
 
     @Output() refresh: EventEmitter<any> = new EventEmitter();
@@ -26,20 +26,20 @@ export class EntityService<TModel, TModelManagement> {
 
     public getManagementEntities() {
 
-        let strUrl = this._serverControllerName + 'getManagementEntities'
+        let strUrl = this.serverControllerName + 'getManagementEntities'
         return this._httpClient.get<Result<TModelManagement[]>>(strUrl);
 
     }
     public getEntity(id: number) {
 
-        let strUrl = this._serverControllerName + 'getEntity/' + id;
+        let strUrl = this.serverControllerName + 'getEntity/' + id;
         return this._httpClient.get<Result<TModel>>(strUrl);
 
     }
 
     public insertEntity(entity: TModel) {
 
-        let strUrl = this._serverControllerName + 'insertEntity';
+        let strUrl = this.serverControllerName + 'insertEntity';
 
         return this._httpClient.post<Result<any>>(strUrl, JSON.stringify(entity));
 
@@ -47,14 +47,14 @@ export class EntityService<TModel, TModelManagement> {
 
     public updateEntity(id: number, entity: TModel) {
 
-        let strUrl = this._serverControllerName + 'updateEntity/' + id;
+        let strUrl = this.serverControllerName + 'updateEntity/' + id;
         return this._httpClient.put<Result<any>>(strUrl, JSON.stringify(entity));
 
     }
 
     public deleteEntity(id: number) {
 
-        let strUrl = this._serverControllerName + 'deleteEntity/' + id;
+        let strUrl = this.serverControllerName + 'deleteEntity/' + id;
         return this._httpClient.delete<Result<any>>(strUrl);
 
     }

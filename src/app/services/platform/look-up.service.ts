@@ -10,16 +10,16 @@ export class LookUpService {
 
     constructor(
         protected _httpClient: HttpClient,
-        protected _serverControllerName: string,
+        public serverControllerName: string,
     ) {
-        this._serverControllerName = AppSettings.SERVER_IP + this._serverControllerName;
+        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
     }
 
     // RESTful Services
 
     public getLookUps() {
 
-        let strUrl = this._serverControllerName + 'getLookUps';
+        let strUrl = this.serverControllerName + 'getLookUps';
         return this._httpClient.get<Result<LookUp[]>>(strUrl);
 
     }

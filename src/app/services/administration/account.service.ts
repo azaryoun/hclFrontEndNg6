@@ -14,16 +14,16 @@ import { Result } from '../../models/platform/result';
 @Injectable()
 export class AccountService {
 
-    private _serverControllerName = 'administration/Account/';
+    public serverControllerName = 'administration/Account/';
 
     constructor(private _httpClient: HttpClient) {
-        this._serverControllerName = AppSettings.SERVER_IP + this._serverControllerName;
+        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
     }
 
 
     public login(login: Login) {
 
-        let strUrl = this._serverControllerName + 'login'
+        let strUrl = this.serverControllerName + 'login'
 
         return this._httpClient.post<Result<JasonWebToken>>(strUrl, JSON.stringify(login));
 
@@ -31,7 +31,7 @@ export class AccountService {
 
     public getUserProfile() {
 
-        let strUrl = this._serverControllerName + 'getUserProfile'
+        let strUrl = this.serverControllerName + 'getUserProfile'
 
         return this._httpClient.get<Result<UserProfile>>(strUrl);
 
