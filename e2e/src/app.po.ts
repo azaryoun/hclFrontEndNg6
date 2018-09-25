@@ -6,7 +6,7 @@ export class AppPage {
   }
 
   getSignInTitle() {
-    return element(by.xpath('xpath=(.//*[normalize-space(text()) and normalize-space(.)=\'mobile no.\'])[1]/preceding::div[1]')).getText();
+    return element(by.xpath('(.//*[normalize-space(text()) and normalize-space(.)=\'mobile no.\'])[1]/preceding::div[1]')).getText();
   }
   getBrowserTitle() {
     return browser.getTitle();
@@ -60,7 +60,7 @@ export class AppPage {
     return element(by.xpath('.//*[normalize-space(text()) and normalize-space(.)=\'notes\'])[1]/following::span[2]'));
   }
   getSnackBarInsertTitle() {
-    return element(by.xpath('xpath=(.//*[normalize-space(text()) and normalize-space(.)=\'Person 2\'])[2]/following::simple-snack-bar[1]')).getText();
+    return element(by.xpath('(.//*[normalize-space(text()) and normalize-space(.)=\'Person 2\'])[2]/following::simple-snack-bar[1]')).getText();
   }
 
 

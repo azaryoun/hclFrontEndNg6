@@ -128,7 +128,7 @@ describe('workspace-project App', () => {
 
   it('should insert or save a new "to do"', () => {
     page.navigateTo();
-    page.getPasswordElement().sendKeys('09122764983');
+    page.getMobileElement().sendKeys('09122764983');
     page.getPasswordElement().sendKeys('1');
     page.getSignInButton().click();
     page.getNewToDoButton().click();
