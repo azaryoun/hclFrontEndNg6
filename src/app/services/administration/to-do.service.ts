@@ -9,7 +9,7 @@ import { ToDo, ToDoManagement } from '../../models/administration/to-do';
 export class ToDoService extends EntityService<ToDo, ToDoManagement> {
 
     constructor(protected _httpClient: HttpClient) {
-        super(_httpClient, "administration/ToDo/");
+        super(_httpClient, 'administration/ToDo/');
     }
 
 }

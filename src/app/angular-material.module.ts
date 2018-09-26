@@ -1,6 +1,6 @@
 
 // Import Modules:
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 
 
 import {
@@ -9,8 +9,8 @@ import {
   MatPaginatorModule, MatSortModule, MatSelectModule, MatOptionModule,
   MatTooltipModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSlideToggleModule,
   MatTabsModule, MatExpansionModule, MatAutocompleteModule, MatDatepickerModule,
-  MatNativeDateModule, MatProgressBarModule,MatGridListModule, MatCardModule, MatToolbarModule,
-   MatSidenavModule, MatListModule,MatProgressSpinnerModule,
+  MatNativeDateModule, MatProgressBarModule, MatGridListModule, MatCardModule, MatToolbarModule,
+   MatSidenavModule, MatListModule, MatProgressSpinnerModule,
 
 } from '@angular/material';
 
@@ -23,8 +23,8 @@ import {
     MatTooltipModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSlideToggleModule,
     MatTabsModule, MatExpansionModule, MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule,
     MatGridListModule, MatCardModule, MatToolbarModule,
-    MatSidenavModule, MatListModule ,MatProgressSpinnerModule,
- 
+    MatSidenavModule, MatListModule , MatProgressSpinnerModule,
+
   ],
   exports: [
     MatButtonModule, MatCheckboxModule, MatRadioModule
@@ -33,7 +33,7 @@ import {
     MatTooltipModule, MatMenuModule, MatDialogModule, MatSnackBarModule, MatSlideToggleModule,
     MatTabsModule, MatExpansionModule, MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule,
     MatGridListModule, MatCardModule, MatToolbarModule,
-    MatSidenavModule, MatListModule ,MatProgressSpinnerModule
+    MatSidenavModule, MatListModule , MatProgressSpinnerModule
   ],
   providers: [
 

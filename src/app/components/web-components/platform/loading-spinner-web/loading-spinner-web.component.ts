@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoadingSpinnerWebComponent implements OnInit {
 
-  @Input() public isLoading: boolean = false; //isLoading input to show/hide the spinner
+  @Input() public isLoading = false; // isLoading input to show/hide the spinner
 
   constructor() { }
 

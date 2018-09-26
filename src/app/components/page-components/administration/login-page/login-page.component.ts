@@ -18,27 +18,27 @@ export class LoginPageComponent implements OnInit {
 
 
 
-  //using public setting of platform from AppSettings static class, these fields have been used in the template
+  // using public setting of platform from AppSettings static class, these fields have been used in the template
   public projectName = AppSettings.projectName;
   public ownerName = AppSettings.ownerName;
   public appVersion: number = AppSettings.BACK_END_VERSION;
   public currentYear = AppSettings.currentYear;
 
-  //public attributes:
-  public showAlert: Boolean = false; //a flag to show/hide DialogAlert component
-  public DialogAlert: DialogAlert = null; //model of DialogAlert component
-  public isLoading: boolean = false;//a flag to show/hide LoadingSpinnerWeb component
+  // public attributes:
+  public showAlert: Boolean = false; // a flag to show/hide DialogAlert component
+  public DialogAlert: DialogAlert = null; // model of DialogAlert component
+  public isLoading = false; // a flag to show/hide LoadingSpinnerWeb component
 
   public formGroupEntity: FormGroup = this._formBuilder.group({
     mobileNo: ['', Validators.compose([Validators.required])],
     password: ['', Validators.compose([Validators.required])],
-    backEndVersion: [this.appVersion, null], //it is sent to server later 
+    backEndVersion: [this.appVersion, null], // it is sent to server later
   });
 
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder,
-    private _accountService: AccountService //injecting AccountService
+    private _accountService: AccountService // injecting AccountService
   ) { }
 
   ngOnInit() {
@@ -50,59 +50,58 @@ export class LoginPageComponent implements OnInit {
   public signInClickHandler(): void {
 
     let oLogin: Login;
-    
-    oLogin = this.formGroupEntity.value; //bining formGroup to our model/object
 
-    this.isLoading = true; //showing LoadingSpinnerWeb component
+    oLogin = this.formGroupEntity.value; // bining formGroup to our model/object
+
+    this.isLoading = true; // showing LoadingSpinnerWeb component
 
 
-    //using _accountService to make login operation
+    // using _accountService to make login operation
     this._accountService.login(oLogin).subscribe(
       (result) => {
 
-        if (result.isDone == true) { //check if login is ok or not
+        if (result.isDone === true) { // check if login is ok or not
 
-          let oJasonWebToken: JasonWebToken = result.datum;
+          const oJasonWebToken: JasonWebToken = result.datum;
           AppSettings.setAuth(oJasonWebToken);
 
-          this.isLoading = false;  //hiding LoadingSpinnerWeb component
+          this.isLoading = false;  // hiding LoadingSpinnerWeb component
 
-          this._router.navigate(['nav/user']); //login is ok, so goto the first page (here is UserPageComponent)
-        }
-        else {
+          this._router.navigate(['nav/user']); // login is ok, so goto the first page (here is UserPageComponent)
+        } else {
 
-          //loging failed
+          // loging failed
 
-          this.isLoading = false;  //hiding LoadingSpinnerWeb component
+          this.isLoading = false;  // hiding LoadingSpinnerWeb component
 
-          //reset the formGroupEntity controls and validators
-          this.formGroupEntity.controls.password.setValue("");
+          // reset the formGroupEntity controls and validators
+          this.formGroupEntity.controls.password.setValue('');
           this.formGroupEntity.controls.password.markAsUntouched();
           this.formGroupEntity.controls.password.updateValueAndValidity();
 
-          //show server message to user
+          // show server message to user
           this.DialogAlert = new DialogAlert(result.serverMessage);
 
-          this.showAlert = true; //showing DialogAlert component
+          this.showAlert = true; // showing DialogAlert component
 
           return;
 
         }
 
       },
-      (error) => { 
-        //unhandled exception, so may be server is not ready at all
-        this.isLoading = false; //hiding LoadingSpinnerWeb component
-        this.DialogAlert = new DialogAlert("The server is not available.");
-        this.showAlert = true; //showing DialogAlert component
+      (error) => {
+        // unhandled exception, so may be server is not ready at all
+        this.isLoading = false; // hiding LoadingSpinnerWeb component
+        this.DialogAlert = new DialogAlert('The server is not available.');
+        this.showAlert = true; // showing DialogAlert component
 
       }
     );
 
-  };
+  }
 
   public closeHandler(): void {
-    this.showAlert = false;  //hding DialogAlert component
+    this.showAlert = false;  // hding DialogAlert component
   }
 
 

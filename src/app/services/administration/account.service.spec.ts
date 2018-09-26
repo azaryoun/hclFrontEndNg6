@@ -32,10 +32,10 @@ describe('Account Service', () => {
 
   it('login', () => {
 
-    const oDatum = new JasonWebToken('testPayLoad')
+    const oDatum = new JasonWebToken('testPayLoad');
     const oResult = new Result<JasonWebToken>(true, false, null, null, null, null, oDatum);
 
-    let oLogin = new Login('mobileNo', 'password');
+    const oLogin = new Login('mobileNo', 'password');
 
     service.login(oLogin).subscribe(res => {
       expect(res.isDone).toBe(true);
@@ -43,13 +43,13 @@ describe('Account Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'login');
-    expect(req.request.method).toBe("POST");
+    expect(req.request.method).toBe('POST');
     req.flush(oResult);
   });
 
   it('getUserProfile', () => {
 
-    const oDatum = new UserProfile('firstname', 'lastname', 'mobileNo', 'email@email.com')
+    const oDatum = new UserProfile('firstname', 'lastname', 'mobileNo', 'email@email.com');
     const oResult = new Result<UserProfile>(true, false, null, null, null, null, oDatum);
 
     service.getUserProfile().subscribe(res => {
@@ -58,7 +58,7 @@ describe('Account Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'getUserProfile');
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
     req.flush(oResult);
   });
 

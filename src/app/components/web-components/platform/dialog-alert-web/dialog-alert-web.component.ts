@@ -16,7 +16,7 @@ export class DialogAlertWebComponent extends WebComponentBase<DialogAlert> imple
 
   ngOnInit() {
     if (this.title == null) {
-      this.title = "Attention !"; //setting default title
+      this.title = 'Attention !'; // setting default title
     }
 
   }

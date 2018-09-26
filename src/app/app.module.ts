@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AngularMaterialModule } from './angular-material.module';
@@ -35,13 +35,13 @@ import { AssigneeService } from './services/look-up/assignee.service';
   declarations: [
     AppComponent,
 
-    //Page Components
+    // Page Components
     LoginPageComponent,
     NavPageComponent,
     ToDoPageComponent,
 
 
-    //Web Components
+    // Web Components
     DialogAlertWebComponent,
     DialogConfirmWebComponent,
     LoadingSpinnerWebComponent,
@@ -68,14 +68,14 @@ import { AssigneeService } from './services/look-up/assignee.service';
   ],
   providers: [
 
-    //Registering JWT intercepter here:
+    // Registering JWT intercepter here:
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JasonWebTokenInterceptor,
       multi: true
     },
 
-    //services
+    // services
     AuthGuardService,
     AccountService,
     ToDoService,

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-import { AppSettings } from "../../app.setting"
+import { AppSettings } from '../../app.setting';
 
-import { Login, UserProfile } from "../../models/administration/account";
+import { Login, UserProfile } from '../../models/administration/account';
 
 import { JasonWebToken } from '../../models/platform/jason-web-token';
 import { Result } from '../../models/platform/result';
@@ -23,7 +23,7 @@ export class AccountService {
 
     public login(login: Login) {
 
-        let strUrl = this.serverControllerName + 'login'
+        const strUrl = this.serverControllerName + 'login';
 
         return this._httpClient.post<Result<JasonWebToken>>(strUrl, JSON.stringify(login));
 
@@ -31,13 +31,10 @@ export class AccountService {
 
     public getUserProfile() {
 
-        let strUrl = this.serverControllerName + 'getUserProfile'
+        const strUrl = this.serverControllerName + 'getUserProfile';
 
         return this._httpClient.get<Result<UserProfile>>(strUrl);
 
     }
-
-
-
 
 }

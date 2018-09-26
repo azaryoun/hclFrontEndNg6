@@ -30,55 +30,53 @@ export class ToDoPageComponent extends PageComponentBase<ToDo> implements OnInit
   ) {
     super(_router, _snackBar, _entityService);
 
-    this.title = "To Do";
-    this.isLoading = true; //showing LoadingSpinnerWeb component
+    this.title = 'To Do';
+    this.isLoading = true; // showing LoadingSpinnerWeb component
 
     assigneeService.getLookUps().subscribe(result => {
-      this.isLoading = false; //hiding LoadingSpinnerWeb component
+      this.isLoading = false; // hiding LoadingSpinnerWeb component
 
-      if (result.isDone == true) {
+      if (result.isDone === true) {
         this.assignees = result.datum;
 
-        toDoStatusTypeService.getLookUps().subscribe(result => {
-          this.isLoading = false; //hiding LoadingSpinnerWeb component
+        toDoStatusTypeService.getLookUps().subscribe(resultLookUp => {
+          this.isLoading = false; // hiding LoadingSpinnerWeb component
 
-          if (result.isDone == true) {
-            this.toDoStatusTypes = result.datum;
+          if (resultLookUp.isDone === true) {
+            this.toDoStatusTypes = resultLookUp.datum;
 
-          }
-          else {
-            //l ookUp data cannot be loaded correctly so come back to login page
+          } else {
+            // l ookUp data cannot be loaded correctly so come back to login page
             this._router.navigate(['']);
 
           }
 
         }, (error) => {
-          this.isLoading = false; //hiding LoadingSpinnerWeb component
+          this.isLoading = false; // hiding LoadingSpinnerWeb component
 
-          //lookUp data cannot be loaded correctly so come back to login page
+          // lookUp data cannot be loaded correctly so come back to login page
           this._router.navigate(['']);
         });
 
 
 
 
-      }
-      else {
-        //l ookUp data cannot be loaded correctly so come back to login page
+      } else {
+        // l ookUp data cannot be loaded correctly so come back to login page
         this._router.navigate(['']);
 
       }
 
     }, (error) => {
-      this.isLoading = false; //hiding LoadingSpinnerWeb component
+      this.isLoading = false; // hiding LoadingSpinnerWeb component
 
-      //lookUp data cannot be loaded correctly so come back to login page
+      // lookUp data cannot be loaded correctly so come back to login page
       this._router.navigate(['']);
     });
 
 
     this._entityService.refresh.subscribe(r => {
-      this._loadGridData(); //reload data from server when a record is deleted, edited or inserted
+      this._loadGridData(); // reload data from server when a record is deleted, edited or inserted
     });
 
     this._loadGridData();
@@ -89,28 +87,28 @@ export class ToDoPageComponent extends PageComponentBase<ToDo> implements OnInit
   ngOnInit() { }
 
 
-  //loading data from server
+  // loading data from server
   private _loadGridData(): void {
 
 
-    this.isLoading = true; //showing LoadingSpinnerWeb component
+    this.isLoading = true; // showing LoadingSpinnerWeb component
 
-    //loading the required data from server by calling getManagementEntities method of entityService object
+    // loading the required data from server by calling getManagementEntities method of entityService object
     this._entityService.getManagementEntities().subscribe(result => {
-      this.isLoading = false; //hiding LoadingSpinnerWeb component
+      this.isLoading = false; // hiding LoadingSpinnerWeb component
 
-      if (result.isDone == true) {
+      if (result.isDone === true) {
         this.todoes = result.datum;
       }
 
     },
       (err => {
-        //Unhandled exception
-        this.isLoading = false; //hiding LoadingSpinnerWeb component
-        this._router.navigate(['']); //navigate to login page
+        // Unhandled exception
+        this.isLoading = false; // hiding LoadingSpinnerWeb component
+        this._router.navigate(['']); // navigate to login page
 
       })
-    ); //end of subscription
+    ); // end of subscription
 
 
   }

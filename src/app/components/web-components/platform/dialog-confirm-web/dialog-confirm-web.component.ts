@@ -15,13 +15,13 @@ export class DialogConfirmWebComponent extends WebComponentBase<DialogConfirm> i
 
   ngOnInit() {
     if (this.title == null) {
-      this.title = "Confirm process"; //setting default title
+      this.title = 'Confirm process'; // setting default title
     }
   }
 
 
   public onClickConfirm(): void {
-    //emiting confirm event to notify holder component to do needful actions
-    this.confirm.emit(this.model.id); //pssing id to the holder component
+    // emiting confirm event to notify holder component to do needful actions
+    this.confirm.emit(this.model.id); // pssing id to the holder component
   }
 }

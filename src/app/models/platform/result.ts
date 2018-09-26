@@ -1,4 +1,4 @@
-﻿//the model for all methods form our services (RESTful HTTPClient services)
+﻿// the model for all methods form our services (RESTful HTTPClient services)
 
 export class Result<dataType> {
     constructor(

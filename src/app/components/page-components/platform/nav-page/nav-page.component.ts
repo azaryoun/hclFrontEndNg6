@@ -13,15 +13,15 @@ import { UserProfile } from '../../../../models/administration/account';
 })
 export class NavPageComponent implements OnInit {
 
-  //using public setting of platform from AppSettings static class, these fields have been used in the template
+  // using public setting of platform from AppSettings static class, these fields have been used in the template
   public projectName = AppSettings.projectName;
 
 
-  //public attributes:
-  public isLoading: boolean = true; //a flag to show/hide LoadingSpinnerWeb component
-  public userProfile: UserProfile = null; //the model for dialogUserProfileWeb component
+  // public attributes:
+  public isLoading = true; // a flag to show/hide LoadingSpinnerWeb component
+  public userProfile: UserProfile = null; // the model for dialogUserProfileWeb component
 
-  //determinging if Breakpoints is Handset or not (mobile view and desktop view)
+  // determinging if Breakpoints is Handset or not (mobile view and desktop view)
   public isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -30,30 +30,29 @@ export class NavPageComponent implements OnInit {
   constructor(
     private _router: Router,
     private _breakpointObserver: BreakpointObserver,
-    private _accountService: AccountService, //injecting AccountService
+    private _accountService: AccountService, // injecting AccountService
   ) { }
 
   ngOnInit() {
-    this.isLoading = true; //showing LoadingSpinnerWeb component
+    this.isLoading = true; // showing LoadingSpinnerWeb component
 
-    //getting userProfile from server by getUserProfile method of _accountService
+    // getting userProfile from server by getUserProfile method of _accountService
     this._accountService.getUserProfile().subscribe(
       (result) => {
-        if (result.isDone == true && result.errorCode == null) {
+        if (result.isDone === true && result.errorCode == null) {
 
-          this.isLoading = false; //hiding LoadingSpinnerWeb component
-          this.userProfile = result.datum; //setting the model of dialogUserProfileWeb compoent
+          this.isLoading = false; // hiding LoadingSpinnerWeb component
+          this.userProfile = result.datum; // setting the model of dialogUserProfileWeb compoent
 
-        }
-        else {
+        } else {
           // cannot load user profile from server so logout !!!
-          this.isLoading = false; //hiding LoadingSpinnerWeb component
+          this.isLoading = false; // hiding LoadingSpinnerWeb component
           this._logout();
         }
       },
       (error) => {
         // cannot load user profile from server so logout !!!
-        this.isLoading = false; //hiding LoadingSpinnerWeb component
+        this.isLoading = false; // hiding LoadingSpinnerWeb component
         this._logout();
       }
     );
@@ -70,7 +69,7 @@ export class NavPageComponent implements OnInit {
 
 
   private _logout() {
-    AppSettings.logout(); //calling AppSettings logout method
+    AppSettings.logout(); // calling AppSettings logout method
     this._router.navigate(['']);
   }
 }

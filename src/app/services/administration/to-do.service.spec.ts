@@ -38,7 +38,7 @@ describe('To Do Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'deleteEntity/' + numId);
-    expect(req.request.method).toBe("DELETE");
+    expect(req.request.method).toBe('DELETE');
     req.flush(oResult);
   });
 
@@ -55,7 +55,7 @@ describe('To Do Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'getEntity/' + numId);
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
     req.flush(oResult);
   });
 
@@ -71,7 +71,7 @@ describe('To Do Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'getManagementEntities');
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
     req.flush(oResult);
   });
 
@@ -88,7 +88,7 @@ describe('To Do Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'insertEntity');
-    expect(req.request.method).toBe("POST");
+    expect(req.request.method).toBe('POST');
     req.flush(oResult);
   });
 
@@ -105,7 +105,7 @@ describe('To Do Service', () => {
     });
 
     const req = httpMock.expectOne(serverControllerName + 'updateEntity/' + numId);
-    expect(req.request.method).toBe("PUT");
+    expect(req.request.method).toBe('PUT');
     req.flush(oResult);
   });
 

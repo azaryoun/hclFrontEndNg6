@@ -9,9 +9,9 @@ export class AuthGuardService implements CanActivate {
         private _router: Router) {
     }
     canActivate() {
-        if (AppSettings.isLoggedIn() == true)
+        if (AppSettings.isLoggedIn() === true) {
             return true;
-        else {
+        } else {
             AppSettings.logout();
             this._router.navigate(['']);
             return false;

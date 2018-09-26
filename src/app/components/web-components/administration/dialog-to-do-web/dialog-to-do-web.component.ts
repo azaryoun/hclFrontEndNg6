@@ -15,11 +15,11 @@ import { LookUp } from '../../../../models/platform/look-up';
 })
 export class DialogToDoWebComponent extends WebComponentBase<ToDo> implements OnInit {
 
-    //lookUp inputs
+    // lookUp inputs
     @Input() public assignees: LookUp[] = [];
     @Input() public toDoStatusTypes: LookUp[] = [];
 
-    //outputs events:
+    // outputs events:
     @Output() saveEntity: EventEmitter<ToDo> = new EventEmitter();
 
 
@@ -36,20 +36,20 @@ export class DialogToDoWebComponent extends WebComponentBase<ToDo> implements On
 
     constructor(
         private _formBuilder: FormBuilder,
-    ) { super() }
+    ) { super(); }
 
 
 
     ngOnInit() {
 
-        //if model is provided and the webComponentMode is not in "new" mode then bind model to formGroupEntity
+        // if model is provided and the webComponentMode is not in "new" mode then bind model to formGroupEntity
 
-        if (this.model != null && this.webComponentMode != "new") {
+        if (this.model != null && this.webComponentMode !== 'new') {
             this.formGroupEntity.patchValue(this.model);
         }
 
-        if (this.webComponentMode == "view") {
-            this.formGroupEntity.disable(); //make controls of formGroupEntity disabled in "view" mode
+        if (this.webComponentMode === 'view') {
+            this.formGroupEntity.disable(); // make controls of formGroupEntity disabled in "view" mode
         }
 
     }
@@ -57,7 +57,7 @@ export class DialogToDoWebComponent extends WebComponentBase<ToDo> implements On
 
     public onSaveEntity(): void {
 
-        let oToDo: ToDo = this.formGroupEntity.value;
+        const oToDo: ToDo = this.formGroupEntity.value;
 
         // emiting saveEntity event to notify holder component to do needful actions
         this.saveEntity.emit(oToDo);

@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LookUpService } from "../platform/look-up.service";
+import { LookUpService } from '../platform/look-up.service';
 
 
 

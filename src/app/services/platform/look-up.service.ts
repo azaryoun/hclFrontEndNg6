@@ -1,11 +1,11 @@
 
 import { HttpClient } from '@angular/common/http';
-import { AppSettings } from "../../app.setting"
+import { AppSettings } from '../../app.setting';
 import { Result } from '../../models/platform/result';
 import { LookUp } from '../../models/platform/look-up';
 
 
-//the base class for our lookUp services )
+// the base class for our lookUp services )
 export class LookUpService {
 
     constructor(
@@ -19,7 +19,7 @@ export class LookUpService {
 
     public getLookUps() {
 
-        let strUrl = this.serverControllerName + 'getLookUps';
+        const strUrl = this.serverControllerName + 'getLookUps';
         return this._httpClient.get<Result<LookUp[]>>(strUrl);
 
     }

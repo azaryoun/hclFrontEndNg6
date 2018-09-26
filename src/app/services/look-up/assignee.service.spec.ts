@@ -30,16 +30,16 @@ describe('Assignee Service', () => {
   it('getLookUps', () => {
 
     const oLookUp = new LookUp(1, 'title');
- 
+
     const oResult = new Result<any>(true, false, null, null, null, null, [oLookUp]);
- 
+
     service.getLookUps().subscribe(res => {
       expect(res.isDone).toBe(true);
       expect(res.datum).toEqual([oLookUp]);
     });
 
     const req = httpMock.expectOne(serverControllerName + 'getLookUps');
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
     req.flush(oResult);
   });
 
