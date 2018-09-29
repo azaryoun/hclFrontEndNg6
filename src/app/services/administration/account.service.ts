@@ -3,12 +3,11 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
-import { AppSettings } from '../../app.setting';
-
 import { Login, UserProfile } from '../../models/administration/account';
 
 import { JasonWebToken } from '../../models/platform/jason-web-token';
 import { Result } from '../../models/platform/result';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable()
@@ -17,7 +16,7 @@ export class AccountService {
     public serverControllerName = 'administration/Account/';
 
     constructor(private _httpClient: HttpClient) {
-        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
+        this.serverControllerName = environment.BACK_END_IP + this.serverControllerName;
     }
 
 

@@ -1,13 +1,8 @@
 ﻿
-import { JasonWebToken } from './models/platform/jason-web-token';
-
 
 // this is a public static class which holds general configurations,setting, methods of the platfom
-export class AppSettings {
+export class AppSetting {
 
-    // Important !!!!!!
-    public static SERVER_IP = 'http://localhost:22511/api/'; // the IP and Path of Back-End must be set here !!!!
-    // please change SERVER_IP carefully (you should not remove "/api/" from the path normally)
 
     public static BACK_END_VERSION = 1.01; // the compatible back-end version (useful in mobile applications)
 
@@ -21,38 +16,6 @@ export class AppSettings {
 
     public static AUTH_KEY = 'authKey'; // the key by which JWT payload in sessionStorage will be stored.
 
-
-
-    // logout method by removing JWT from sessionStorage
-    public static logout(): boolean {
-        sessionStorage.removeItem(AppSettings.AUTH_KEY);
-        return false;
-    }
-
-    // checking if user is logged in or not  by getting JWT from sessionStorage
-    public static isLoggedIn(): boolean {
-        return sessionStorage.getItem(AppSettings.AUTH_KEY) != null;
-    }
-
-
-    // setAuth by setting JWT into sessionStorage
-    public static setAuth(jasonWebToken: JasonWebToken) {
-
-        sessionStorage.removeItem(AppSettings.AUTH_KEY);
-        sessionStorage.setItem(AppSettings.AUTH_KEY, JSON.stringify(jasonWebToken));
-
-    }
-
-    // gets current JWT storred in sessionStorage
-    public static getAuth(): JasonWebToken {
-        const authKey = sessionStorage.getItem(AppSettings.AUTH_KEY);
-        if (authKey) {
-            return JSON.parse(authKey);
-        } else {
-            this.logout();
-            return null;
-        }
-    }
 
 
 }

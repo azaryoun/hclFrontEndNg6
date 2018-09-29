@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { AppSettings } from '../../app.setting';
 import { Observable } from 'rxjs';
 import { JasonWebToken } from '../../models/platform/jason-web-token';
+import { AppUtility } from '../../app.utility';
 
 
 // the interceptor service for mounting JWT in Header of every HTTP request
@@ -11,7 +11,7 @@ import { JasonWebToken } from '../../models/platform/jason-web-token';
 export class JasonWebTokenInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        let oJasonWebToken = AppSettings.getAuth();
+        let oJasonWebToken = AppUtility.getAuth();
 
         let strAccessToken = '';
 
@@ -32,7 +32,7 @@ export class JasonWebTokenInterceptor implements HttpInterceptor {
             if (event instanceof HttpResponse) {
                 strAccessToken = event.headers.get('Authorization');
                 oJasonWebToken = new JasonWebToken(strAccessToken);
-                AppSettings.setAuth(oJasonWebToken);
+                AppUtility.setAuth(oJasonWebToken);
             }
             return event;
         });

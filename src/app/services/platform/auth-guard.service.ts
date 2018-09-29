@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AppSettings } from '../../app.setting';
+import { AppUtility } from '../../app.utility';
 
 // a service which will be injected into routing module to guard our pages against unauhtorized access
 @Injectable()
@@ -9,10 +9,10 @@ export class AuthGuardService implements CanActivate {
         private _router: Router) {
     }
     canActivate() {
-        if (AppSettings.isLoggedIn() === true) {
+        if (AppUtility.isLoggedIn() === true) {
             return true;
         } else {
-            AppSettings.logout();
+            AppUtility.logout();
             this._router.navigate(['']);
             return false;
         }

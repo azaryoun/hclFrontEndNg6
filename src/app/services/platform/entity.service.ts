@@ -1,9 +1,9 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Output, EventEmitter } from '@angular/core';
-import { AppSettings } from '../../app.setting';
 
 import { Result } from '../../models/platform/result';
+import { environment } from '../../../environments/environment.prod';
 
 // the base class for our services (except lookUp services)
 export class EntityService<TModel, TModelManagement> {
@@ -12,7 +12,7 @@ export class EntityService<TModel, TModelManagement> {
         protected _httpClient: HttpClient,
         public serverControllerName: string,
     ) {
-        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
+        this.serverControllerName = environment.BACK_END_IP + this.serverControllerName;
     }
 
     @Output() refresh: EventEmitter<any> = new EventEmitter();

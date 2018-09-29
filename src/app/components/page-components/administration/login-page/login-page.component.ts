@@ -2,11 +2,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppSettings } from '../../../../app.setting';
+import { AppSetting } from '../../../../app.setting';
 import { AccountService } from '../../../../services/administration/account.service';
 import { Login } from '../../../../models/administration/account';
 import { JasonWebToken } from '../../../../models/platform/jason-web-token';
 import { DialogAlert } from '../../../../models/platform/dialog-alert';
+import { AppUtility } from '../../../../app.utility';
 
 
 @Component({
@@ -19,10 +20,10 @@ export class LoginPageComponent implements OnInit {
 
 
   // using public setting of platform from AppSettings static class, these fields have been used in the template
-  public projectName = AppSettings.projectName;
-  public ownerName = AppSettings.ownerName;
-  public appVersion: number = AppSettings.BACK_END_VERSION;
-  public currentYear = AppSettings.currentYear;
+  public projectName = AppSetting.projectName;
+  public ownerName = AppSetting.ownerName;
+  public appVersion: number = AppSetting.BACK_END_VERSION;
+  public currentYear = AppSetting.currentYear;
 
   // public attributes:
   public showAlert: Boolean = false; // a flag to show/hide DialogAlert component
@@ -63,7 +64,7 @@ export class LoginPageComponent implements OnInit {
         if (result.isDone === true) { // check if login is ok or not
 
           const oJasonWebToken: JasonWebToken = result.datum;
-          AppSettings.setAuth(oJasonWebToken);
+          AppUtility.setAuth(oJasonWebToken);
 
           this.isLoading = false;  // hiding LoadingSpinnerWeb component
 

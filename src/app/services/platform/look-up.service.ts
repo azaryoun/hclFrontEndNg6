@@ -1,8 +1,8 @@
 
 import { HttpClient } from '@angular/common/http';
-import { AppSettings } from '../../app.setting';
 import { Result } from '../../models/platform/result';
 import { LookUp } from '../../models/platform/look-up';
+import { environment } from '../../../environments/environment';
 
 
 // the base class for our lookUp services )
@@ -12,7 +12,7 @@ export class LookUpService {
         protected _httpClient: HttpClient,
         public serverControllerName: string,
     ) {
-        this.serverControllerName = AppSettings.SERVER_IP + this.serverControllerName;
+        this.serverControllerName = environment.BACK_END_IP + this.serverControllerName;
     }
 
     // RESTful Services

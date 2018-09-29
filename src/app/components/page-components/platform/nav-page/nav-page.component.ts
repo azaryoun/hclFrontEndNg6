@@ -3,9 +3,10 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AppSettings } from '../../../../app.setting';
+import { AppSetting } from '../../../../app.setting';
 import { AccountService } from '../../../../services/administration/account.service';
 import { UserProfile } from '../../../../models/administration/account';
+import { AppUtility } from '../../../../app.utility';
 
 @Component({
   templateUrl: './nav-page.component.html',
@@ -14,7 +15,7 @@ import { UserProfile } from '../../../../models/administration/account';
 export class NavPageComponent implements OnInit {
 
   // using public setting of platform from AppSettings static class, these fields have been used in the template
-  public projectName = AppSettings.projectName;
+  public projectName = AppSetting.projectName;
 
 
   // public attributes:
@@ -69,7 +70,7 @@ export class NavPageComponent implements OnInit {
 
 
   private _logout() {
-    AppSettings.logout(); // calling AppSettings logout method
+    AppUtility.logout(); // calling AppSettings logout method
     this._router.navigate(['']);
   }
 }
